@@ -1,0 +1,5 @@
+F:\Projects\SouNews.Web\SouNews.DB\bin\Debug\SouNews.DB.dll
+F:\Projects\SouNews.Web\SouNews.DB\bin\Debug\SouNews.DB.pdb
+F:\Projects\SouNews.Web\SouNews.DB\obj\Debug\SouNews.DB.csprojResolveAssemblyReference.cache
+F:\Projects\SouNews.Web\SouNews.DB\obj\Debug\SouNews.DB.dll
+F:\Projects\SouNews.Web\SouNews.DB\obj\Debug\SouNews.DB.pdb
