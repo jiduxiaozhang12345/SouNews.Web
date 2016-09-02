@@ -152,6 +152,12 @@ input, select, button {
     float: left;
     margin-top: 17px;
 }
+.head .tel {
+    width: 210px;
+    height: 40px;
+    float: right;
+    margin-top: 17px;
+}
 
 .nav_m .search .btn {
     width: 30px;
