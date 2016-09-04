@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SouNews.DB", "SouNews.DB\So
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SouNews.Model", "SouNews.Model\SouNews.Model.csproj", "{1BA1E80B-FE04-497B-BAA3-E530E82F8BBC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SouNews.Common", "SouNews.Common\SouNews.Common.csproj", "{9CD440F3-B0F7-4551-94F4-E457E1BEAD38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1BA1E80B-FE04-497B-BAA3-E530E82F8BBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BA1E80B-FE04-497B-BAA3-E530E82F8BBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BA1E80B-FE04-497B-BAA3-E530E82F8BBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CD440F3-B0F7-4551-94F4-E457E1BEAD38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CD440F3-B0F7-4551-94F4-E457E1BEAD38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CD440F3-B0F7-4551-94F4-E457E1BEAD38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CD440F3-B0F7-4551-94F4-E457E1BEAD38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -84,3 +84,14 @@ F:\Projects\SouNews.Web\SouNews.Web\bin\zh-Hans\System.Web.WebPages.Razor.resour
 F:\Projects\SouNews.Web\SouNews.Web\obj\Debug\SouNews.Web.csprojResolveAssemblyReference.cache
 F:\Projects\SouNews.Web\SouNews.Web\obj\Debug\SouNews.Web.dll
 F:\Projects\SouNews.Web\SouNews.Web\obj\Debug\SouNews.Web.pdb
+F:\Projects\SouNews.Web\SouNews.Web\bin\SouNews.Common.dll
+F:\Projects\SouNews.Web\SouNews.Web\bin\SouNews.DB.dll
+F:\Projects\SouNews.Web\SouNews.Web\bin\SouNews.Model.dll
+F:\Projects\SouNews.Web\SouNews.Web\bin\SouNews.Common.pdb
+F:\Projects\SouNews.Web\SouNews.Web\bin\SouNews.DB.pdb
+F:\Projects\SouNews.Web\SouNews.Web\bin\SouNews.Model.pdb
+F:\Projects\SouNews.Web\SouNews.Web\bin\EntityFramework.SqlServer.dll
+F:\Projects\SouNews.Web\SouNews.Web\bin\NPOI.dll
+F:\Projects\SouNews.Web\SouNews.Web\bin\ICSharpCode.SharpZipLib.dll
+F:\Projects\SouNews.Web\SouNews.Web\bin\EntityFramework.SqlServer.xml
+F:\Projects\SouNews.Web\SouNews.Web\bin\NPOI.xml

@@ -1,61 +1,118 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@{
+    ViewBag.Title = "1024";
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>新闻,娱乐,时尚,欢乐就在搜闻天下</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
-    <meta name="description" content="新闻,娱乐,时尚,欢乐就在搜闻天下" />
-    <meta name="keywords" content="新闻,娱乐,时尚,欢乐就在搜闻天下" />
-    <meta http-equiv="mobile-agent" content="format=xhtml;url=index.html" />
-    <link href="~/Content/Css/index.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>1024</title>
+    <link href="~/Content/assets/css/dpl-min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/bui-min.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/main-min.css" rel="stylesheet" />
 </head>
 <body>
-    <!-- header -->
-    <div class="head clearfix">
-        <div class="logo"><a href=""><img src="~/Content/Images/logo.png" width="140" height="40" alt="" /></a></div>
-        <div class="tel"><img src="~/Content/Images/tel.png" alt="" /></div>
+    <div class="header">
+        <div class="dl-title">
+            <a style="font-size:12px" class="myData" href="#" title="修改个人资料">修改个人资料</a>
+
+            <!--<img src="/chinapost/Public/assets/img/top.png">-->
+        </div>
+        <div class="dl-title" style="float:right;cursor:pointer"><a href="/Home/LoginOut" style="font-size:12px">退出</a></div>
     </div>
-    <div class="nav_bg">
-        <div class="nav_m">
-            <ul class="nav clearfix">
-                <li class="now"><a href="/Home/Index">首页</a></li>
-                <li class="line">&nbsp;</li>
-                <li><a href="/News/Index">新闻</a></li>
-                <li class="line">&nbsp;</li>
-                <li><a href="/Sports/Index">体育</a></li>
-                <li class="line">&nbsp;</li>
-                <li><a href="/Entertainment/Index">娱乐</a></li>
-                <li class="line">&nbsp;</li>
-                <li><a href="/Technology/Index">科技</a></li>
-                <li class="line">&nbsp;</li>
-                <li><a href="/Tourism/Index">旅游</a></li>
-                <li class="line">&nbsp;</li>
-                <li><a href="/Education/Index">教育</a></li>
+    <div class="content">
+        <div class="dl-main-nav">
+            <div class="dl-inform"><div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div></div>
+            <ul id="J_Nav" class="nav-list ks-clear">
+                <li class="nav-item dl-selected"><div class="nav-item-inner nav-home">功能</div></li>
             </ul>
-            <div class="search">
-                <input name="" type="text" placeholder="请输入搜索内容">
-                <input name="" type="submit" value="" class="btn">
-            </div>
+        </div>
+        <ul id="J_NavContent" class="dl-tab-conten"></ul>
+    </div>
+    <div id="content-wrapper">
+        <div id="content-wrapperchild">
+            @RenderSection("breadcrumbContent", false)
+            @RenderSection("pageHeaderContent", false)
+            @RenderBody()
         </div>
     </div>
-    <!-- /header -->
-    @RenderBody()
+    <script src="~/Content/assets/js/jquery-1.8.1.min.js"></script>
+    <script src="~/Content/assets/js/bui-min.js"></script>
+    <script src="~/Content/assets/js/common/main.js"></script>
+    <script>
+        $(function () {
+            //只为刷存在感
+            setTimeIndex();
+            getMenuList();
 
-    <!-- footer -->
-    <div class="footer w960 center mt1 clear">
-        <div class="footer_left"></div>
-        <div class="footer_body">
-            <p>做新闻网站，我们是认真的。<a target='_blank' href="#">如有疑问，请留言</a></p>
-        </div>
-        <div class="footer_right"></div>
+            $(".myData").click(function () {
+                //获取ID
+                var id = 0;
+                $.each(menuList, function () {
+                    $.each(this.items, function () {
+                        if (this.text == "员工管理") {
+                            id = this.id;
+                        }
+                    })
+                })
+                MenuObject.openPage({ id: id })
+            })
+        })
+        function setTimeIndex() {
+            $.ajax({
+                url: "@Url.Action("Index","AHome") ",
+                type: "get"
+            }),
+                setTimeout("setTimeIndex()", 60000);
+        };
+
+        function getMenuList() {
+            $.ajax({
+                url: "@Url.Action("GetMenuByName", "AMenu")",
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    var firstMenu = [];
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].parentId == 0) {
+                            firstMenu.push(data[i]);
+                        }
+                    }
+                    firstMenu.sort(function (a, b) { return parseInt(a.postion) - parseInt(b.postion); })
+                    for (var i = 0; i < firstMenu.length; i++) {
+                        menuList.push({ text: firstMenu[i].name, items: [], id: firstMenu[i].id });
+                    }
+                    for (var j = 0; j < menuList.length; j++) {
+                        data.sort(function (a, b) { return a.postion - b.postion; })
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i].parentId == menuList[j].id) {
+                                menuList[j].items.push({ text: data[i].name, href: '/' + data[i].controllerName + '/' + data[i].actionName, id: data[i].id.toString() });
+                            }
+                        }
+                    }
+                    // menuList.push({ "text": "其他", "items": [{ text: "修改个人资料", href: "/Staff/Edit/@staff.id" }] });
+
+                    showMenu();
+                }
+            })
+        }
+        var menuList = [];
+        var MenuObject;
+        //显示菜单
+        function showMenu() {
+            BUI.use('common/main', function () {
+                var config = [
+                    {
+                        id: '1', menu: menuList
+                    }];
+                MenuObject = new PageUtil.MainPage({
+                    modulesConfig: config
+                });
+            });
+        }
+
+    </script>
+    <div style="text-align:center; ">
+
     </div>
-    <!-- /footer -->
-
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
 </body>
 </html>

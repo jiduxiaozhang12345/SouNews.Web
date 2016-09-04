@@ -39,6 +39,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -59,9 +67,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -126,23 +131,65 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\EducationController.cs" />
-    <Compile Include="Controllers\EntertainmentController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NewsController.cs" />
-    <Compile Include="Controllers\SportsController.cs" />
-    <Compile Include="Controllers\TechnologyController.cs" />
-    <Compile Include="Controllers\TourismController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\css\bui-min.css" />
+    <Content Include="Content\assets\css\dpl-min.css" />
+    <Content Include="Content\assets\css\main-min.css" />
+    <Content Include="Content\assets\css\main.css" />
+    <Content Include="Content\assets\css\page-min.css" />
+    <Content Include="Content\assets\css\page.css" />
+    <Content Include="Content\assets\css\prettify.css" />
+    <Content Include="Content\assets\img\hide_list.png" />
+    <Content Include="Content\assets\img\icon1.png" />
+    <Content Include="Content\assets\img\icon2.png" />
+    <Content Include="Content\assets\img\left-slib.gif" />
+    <Content Include="Content\assets\img\main-nav-bg.png" />
+    <Content Include="Content\assets\img\main-nav-bg1.png" />
+    <Content Include="Content\assets\img\main-nav-bg2.png" />
+    <Content Include="Content\assets\img\menu.jpg" />
+    <Content Include="Content\assets\img\nav.jpg" />
+    <Content Include="Content\assets\img\nav_selected.png" />
+    <Content Include="Content\assets\img\resource.jpg" />
+    <Content Include="Content\assets\img\top.png" />
+    <Content Include="Content\assets\js\bui-min.js" />
+    <Content Include="Content\assets\js\bui.js" />
+    <Content Include="Content\assets\js\common\build.xml" />
+    <Content Include="Content\assets\js\common\main-min.js" />
+    <Content Include="Content\assets\js\common\main.js" />
+    <Content Include="Content\assets\js\common\page-min.js" />
+    <Content Include="Content\assets\js\common\page.js" />
+    <Content Include="Content\assets\js\common\search-min.js" />
+    <Content Include="Content\assets\js\common\search.js" />
+    <Content Include="Content\assets\js\config-min.js" />
+    <Content Include="Content\assets\js\config.js" />
+    <Content Include="Content\assets\js\editor-min.js" />
+    <Content Include="Content\assets\js\jquery-1.8.1.min.js" />
+    <Content Include="Content\assets\js\module\build.xml" />
+    <Content Include="Content\assets\js\prettify.js" />
+    <Content Include="Content\assets\js\toolbar-min.js" />
+    <Content Include="Content\assets\js\tree-min.js" />
+    <Content Include="Content\Css\applyers.css" />
+    <Content Include="Content\Css\bootstrap-responsive.css" />
+    <Content Include="Content\Css\bootstrap-responsive.min.css" />
+    <Content Include="Content\Css\bootstrap.css" />
+    <Content Include="Content\Css\bootstrap.min.css" />
     <Content Include="Content\Css\index.css" />
+    <Content Include="Content\Css\jquery.autocomplete.css" />
     <Content Include="Content\Css\layout.css" />
     <Content Include="Content\Css\page.css" />
+    <Content Include="Content\Css\pixel-admin.css" />
+    <Content Include="Content\Css\pixel-admin.min.css" />
     <Content Include="Content\Css\reset.css" />
+    <Content Include="Content\Css\style.css" />
     <Content Include="Content\Css\thems.css" />
     <Content Include="Content\Images\092Z23428-0.jpg" />
     <Content Include="Content\Images\092Z54516-1.jpg" />
@@ -242,6 +289,10 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\ckform.js" />
+    <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\jquery-1.12.1.min.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -256,6 +307,31 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\My97DatePicker\calendar.js" />
+    <Content Include="Scripts\My97DatePicker\lang\en.js" />
+    <Content Include="Scripts\My97DatePicker\lang\zh-cn.js" />
+    <Content Include="Scripts\My97DatePicker\lang\zh-tw.js" />
+    <Content Include="Scripts\My97DatePicker\skin\datePicker.gif" />
+    <Content Include="Scripts\My97DatePicker\skin\default\datepicker.css" />
+    <Content Include="Scripts\My97DatePicker\skin\default\img.gif" />
+    <Content Include="Scripts\My97DatePicker\skin\WdatePicker.css" />
+    <Content Include="Scripts\My97DatePicker\skin\whyGreen\bg.jpg" />
+    <Content Include="Scripts\My97DatePicker\skin\whyGreen\datepicker.css" />
+    <Content Include="Scripts\My97DatePicker\skin\whyGreen\img.gif" />
+    <Content Include="Scripts\My97DatePicker\WdatePicker.js" />
+    <Content Include="Scripts\My97DatePicker\开发包\lang\en.js" />
+    <Content Include="Scripts\My97DatePicker\开发包\lang\zh-cn.js" />
+    <Content Include="Scripts\My97DatePicker\开发包\lang\zh-tw.js" />
+    <Content Include="Scripts\My97DatePicker\开发包\readme.txt" />
+    <Content Include="Scripts\My97DatePicker\开发包\skin\datePicker.gif" />
+    <Content Include="Scripts\My97DatePicker\开发包\skin\default\datepicker.css" />
+    <Content Include="Scripts\My97DatePicker\开发包\skin\default\img.gif" />
+    <Content Include="Scripts\My97DatePicker\开发包\skin\WdatePicker.css" />
+    <Content Include="Scripts\My97DatePicker\开发包\skin\whyGreen\bg.jpg" />
+    <Content Include="Scripts\My97DatePicker\开发包\skin\whyGreen\datepicker.css" />
+    <Content Include="Scripts\My97DatePicker\开发包\skin\whyGreen\img.gif" />
+    <Content Include="Scripts\myModal.js" />
+    <Content Include="Scripts\pixel-admin.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -269,12 +345,16 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Tourism\Index.cshtml" />
-    <Content Include="Views\Education\Index.cshtml" />
-    <Content Include="Views\Entertainment\Index.cshtml" />
-    <Content Include="Views\News\Index.cshtml" />
-    <Content Include="Views\Sports\Index.cshtml" />
-    <Content Include="Views\Technology\Index.cshtml" />
+    <Content Include="Views\Shared\_User.cshtml" />
+    <Content Include="Views\Shared\_Father.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
+    <Content Include="Views\Home\Sports.cshtml" />
+    <Content Include="Views\Home\Entertainment.cshtml" />
+    <Content Include="Views\Home\Technology.cshtml" />
+    <Content Include="Views\Home\Tourism.cshtml" />
+    <Content Include="Views\Home\Education.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -282,6 +362,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SouNews.Common\SouNews.Common.csproj">
+      <Project>{9cd440f3-b0f7-4551-94f4-e457e1bead38}</Project>
+      <Name>SouNews.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SouNews.DB\SouNews.DB.csproj">
+      <Project>{947cd2f5-9054-4fda-837b-2d360ba5ba7b}</Project>
+      <Name>SouNews.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SouNews.Model\SouNews.Model.csproj">
+      <Project>{1ba1e80b-fe04-497b-baa3-e530e82f8bbc}</Project>
+      <Name>SouNews.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

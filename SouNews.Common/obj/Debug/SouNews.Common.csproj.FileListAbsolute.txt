@@ -1,0 +1,15 @@
+F:\Projects\SouNews.Web\SouNews.Common\bin\Debug\SouNews.Common.dll
+F:\Projects\SouNews.Web\SouNews.Common\bin\Debug\SouNews.Common.pdb
+F:\Projects\SouNews.Web\SouNews.Common\obj\Debug\SouNews.Common.csprojResolveAssemblyReference.cache
+F:\Projects\SouNews.Web\SouNews.Common\obj\Debug\SouNews.Common.dll
+F:\Projects\SouNews.Web\SouNews.Common\obj\Debug\SouNews.Common.pdb
+F:\Projects\SouNews.Web\SouNews.Common\obj\Debug\Interop.MSScriptControl.dll
+F:\Projects\SouNews.Web\SouNews.Common\obj\Debug\SouNews.Common.csproj.ResolveComReference.cache
+F:\Projects\SouNews.Web\SouNews.Common\bin\Debug\ICSharpCode.SharpZipLib.dll
+F:\Projects\SouNews.Web\SouNews.Common\bin\Debug\NPOI.dll
+F:\Projects\SouNews.Web\SouNews.Common\bin\Debug\NPOI.OOXML.dll
+F:\Projects\SouNews.Web\SouNews.Common\bin\Debug\NPOI.OpenXml4Net.dll
+F:\Projects\SouNews.Web\SouNews.Common\bin\Debug\NPOI.OpenXmlFormats.dll
+F:\Projects\SouNews.Web\SouNews.Common\bin\Debug\NPOI.xml
+F:\Projects\SouNews.Web\SouNews.Common\bin\Debug\NPOI.OOXML.xml
+F:\Projects\SouNews.Web\SouNews.Common\bin\Debug\NPOI.OpenXml4Net.xml

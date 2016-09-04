@@ -3,3 +3,9 @@ F:\Projects\SouNews.Web\SouNews.DB\bin\Debug\SouNews.DB.pdb
 F:\Projects\SouNews.Web\SouNews.DB\obj\Debug\SouNews.DB.csprojResolveAssemblyReference.cache
 F:\Projects\SouNews.Web\SouNews.DB\obj\Debug\SouNews.DB.dll
 F:\Projects\SouNews.Web\SouNews.DB\obj\Debug\SouNews.DB.pdb
+F:\Projects\SouNews.Web\SouNews.DB\bin\Debug\SouNews.DB.dll.config
+F:\Projects\SouNews.Web\SouNews.DB\bin\Debug\EntityFramework.dll
+F:\Projects\SouNews.Web\SouNews.DB\bin\Debug\EntityFramework.SqlServer.dll
+F:\Projects\SouNews.Web\SouNews.DB\bin\Debug\EntityFramework.xml
+F:\Projects\SouNews.Web\SouNews.DB\bin\Debug\EntityFramework.SqlServer.xml
+F:\Projects\SouNews.Web\SouNews.DB\bin\Debug\zh-Hans\EntityFramework.resources.dll

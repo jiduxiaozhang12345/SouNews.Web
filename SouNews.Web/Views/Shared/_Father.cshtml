@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Father";
+}
+
+<head>
+    <title>后台管理系统</title>
+    <link href="~/Content/Css/pixel-admin.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="~/Content/Css/jquery.autocomplete.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.12.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/ckform.js"></script>
+    <script src="~/Scripts/common.js"></script>
+    <script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+    <script src="~/Scripts/myModal.js"></script>
+    <script src="~/Scripts/pixel-admin.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <style>
+        * {
+            font-size: 12px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .form-group {
+            float: none;
+            clear: both;
+        }
+
+        .table tbody tr:hover {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<script>
+    $(function () {
+        $(".btn-success").each(function () {
+            if ($(this).attr("data-url") == "Create") {
+                $(this).css({ position: "absolute", right: 1, top: 1, height: 30, paddingTop: 2 });
+            }
+        })
+        $(".pager a").each(function () {
+            $(this).attr("target", "_self")
+
+        })
+    })
+
+</script>
+<body>
+    @RenderBody()
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+
+

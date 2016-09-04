@@ -2,3 +2,4 @@ F:\Projects\SouNews.Web\SouNews.Model\bin\Debug\SouNews.Model.dll
 F:\Projects\SouNews.Web\SouNews.Model\bin\Debug\SouNews.Model.pdb
 F:\Projects\SouNews.Web\SouNews.Model\obj\Debug\SouNews.Model.dll
 F:\Projects\SouNews.Web\SouNews.Model\obj\Debug\SouNews.Model.pdb
+F:\Projects\SouNews.Web\SouNews.Model\obj\Debug\SouNews.Model.csprojResolveAssemblyReference.cache
