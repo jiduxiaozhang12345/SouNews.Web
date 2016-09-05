@@ -7,9 +7,9 @@
     <Property Name="id" Type="Int32" Nullable="false" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="path" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="parent" Type="Int32" />
     <Property Name="position" Type="Int32" />
     <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="parentId" Type="Int32" />
   </EntityType>
   <EntityType Name="News">
     <Key>
@@ -36,5 +36,52 @@
     <EntitySet Name="Menu" EntityType="Self.Menu" />
     <EntitySet Name="News" EntityType="Self.News" />
     <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="LogOperate" EntityType="SouNewsDBModel.LogOperate" />
+    <EntitySet Name="Power" EntityType="SouNewsDBModel.Power" />
+    <EntitySet Name="Role" EntityType="SouNewsDBModel.Role" />
+    <EntitySet Name="RolePower" EntityType="SouNewsDBModel.RolePower" />
+    <EntitySet Name="UserRole" EntityType="SouNewsDBModel.UserRole" />
   </EntityContainer>
+  <EntityType Name="LogOperate">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="path" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="addtime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Power">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="path" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="info" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="RolePower">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="roleId" Type="Int32" />
+    <Property Name="powerId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="Int32" />
+    <Property Name="roleId" Type="Int32" />
+  </EntityType>
 </Schema>

@@ -1,0 +1,8 @@
+﻿@model SouNews.DB.Power
+
+<body>
+    @using (Ajax.BeginForm("PowerEdit", "System", new { @class = "form-horizontal" }, new AjaxOptions { UpdateTargetId = "updateTargetId", HttpMethod = "Post", OnSuccess = "OnSuccessAjax", OnBegin = "OnBeginAjaxBeginForm", OnComplete = "OnCompleteAjaxBeginForm", OnFailure = "OnFailureAjaxBeginForm" })) {
+        @Html.Partial("PowerAddOrEdit", Model);
+    }
+</body>
+

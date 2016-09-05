@@ -1,4 +1,182 @@
-﻿@{
-    ViewBag.Title = "Login";
-    Layout = "~/Views/Shared/_Father.cshtml";
-}
+﻿<style type="text/css">
+    body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+    }
+
+    .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+        -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    }
+
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+</style>
+<body>
+    <div class="container">
+        <h2 class="form-signin-heading"></h2>
+        <div style="height:30px;">
+            <input type="text" id="username" class="input-block-level" style="width:30%" placeholder="账号" required />
+        </div>
+
+        <div style="height:30px; margin-top:10px; margin-bottom:10px;">
+            <input type="text" id="password" class="input-block-level" style="width: 30%; display:none" placeholder="密码" required />
+        </div>
+        <div style="height:30px;">
+            <input type="checkbox" id="recordPass" /><label for="recordPass">记住密码</label>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-large btn-primary" id="submit" style="margin-top:20px" onclick="loginBegin()">登录</button>
+        </div>
+    </div>
+</body>
+<script>
+    $(function () {
+        setTimeout(function () { $("#password")[0].type = "password"; $("#password").show(); }, 0)
+        var user = getFirstInfo();
+        try {
+            if (user.p != "") {
+                $("#recordPass").prop("checked", true);
+                $("#username").val(user.u);
+                $("#password").val(user.p);
+            } else {
+                $("#recordPass").prop("checked", false)
+            }
+        } catch (e) {
+
+        }
+
+        $("#username").keyup(function () {
+            try {
+                var user = getInfo($(this).val());
+                if (user.p != "") {
+                    $("#recordPass").prop("checked", true);
+                    $("#username").val(user.u);
+                    $("#password").val(user.p);
+                } else {
+                    $("#password").val("");
+                    $("#recordPass").prop("checked", false)
+                }
+            } catch (e) {
+
+            }
+
+        })
+    });
+    //登录
+    function loginBegin() {
+        var username = $("#username").val();
+        var password = $("#password").val();
+
+        $.ajax({
+            url: "@Url.Action("Login", "Account")",
+            type: 'post',
+            data: {
+                username: username, password: password
+            },
+            success: function (result) {
+                var obj = eval("(" + result + ")")
+                if (obj.message == "ok") {
+                    try {
+                        if ($("#recordPass").prop("checked")) {
+                            setInfo(username, obj.t);
+                        } else {
+                            delInfo(username);
+                        }
+                    } catch (e) { }
+                    top.location.href = "@Url.Action("Index", "Account")";
+                } else if (obj.message == "no") {
+                    alert("账号或者密码错误,请重新输入");
+                } else {
+                    alert(obj.message);
+                }
+            }
+        });
+    }
+    //设置用户
+    function setInfo(u, p) {
+        //[{u,p}]
+        var userinfo = window.localStorage.getItem("userinfo");
+        var userList = [];
+        if (userinfo) {
+            userList = JSON.parse(userinfo);
+        }
+        var isExists = false;
+        for (var i = 0; i < userList.length; i++) {
+            if (userList[i].u == u) {
+                userList[i].p = p;
+                isExists = true;
+            }
+        }
+        if (!isExists) {
+            userList.push({ u: u, p: p });
+        }
+        window.localStorage.setItem("userinfo", JSON.stringify(userList));
+    };
+    //删除用户
+    function delInfo(u) {
+        //[{u,p}]
+        var userinfo = window.localStorage.getItem("userinfo");
+        var userList = [];
+        if (userinfo) {
+            userList = JSON.parse(userinfo);
+        }
+
+        for (var i = 0; i < userList.length; i++) {
+            if (userList[i].u == u) {
+                userList.splice(i, 1);
+                break;
+            }
+        }
+        window.localStorage.setItem("userinfo", JSON.stringify(userList));
+    }
+    //获取用户
+    function getInfo(u) {
+        var userinfo = window.localStorage.getItem("userinfo");
+        var userList = [];
+        if (userinfo) {
+            userList = JSON.parse(userinfo);
+        }
+
+        for (var i = 0; i < userList.length; i++) {
+            if (userList[i].u == u) {
+                return { u: userList[i].u, p: userList[i].p };
+            }
+        }
+        return { u: u, p: "" };
+    }
+
+    //获取localStorage的用户列表
+    function getAllInfo() {
+        var userinfo = window.localStorage.getItem("userinfo");
+        var userList = [];
+        if (userinfo) {
+            userList = JSON.parse(userinfo);
+        }
+        return userList;
+    }
+    //获取第一个用户
+    function getFirstInfo() {
+        var userinfo = window.localStorage.getItem("userinfo");
+        var userList = [];
+        if (userinfo) {
+            userList = JSON.parse(userinfo);
+        }
+        if (userList.length > 0) {
+            return userList[0];
+        }
+        return { u: "", p: "" };
+    }
+</script>

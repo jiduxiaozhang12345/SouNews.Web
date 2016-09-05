@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>1024</title>
+    <title>搜闻天下后台管理系统</title>
     <link href="~/Content/assets/css/dpl-min.css" rel="stylesheet" />
     <link href="~/Content/assets/css/bui-min.css" rel="stylesheet" />
     <link href="~/Content/assets/css/main-min.css" rel="stylesheet" />
@@ -17,7 +17,7 @@
 
             <!--<img src="/chinapost/Public/assets/img/top.png">-->
         </div>
-        <div class="dl-title" style="float:right;cursor:pointer"><a href="/Home/LoginOut" style="font-size:12px">退出</a></div>
+        <div class="dl-title" style="float:right;cursor:pointer"><a href="/Account/LoginOut" style="font-size:12px">退出</a></div>
     </div>
     <div class="content">
         <div class="dl-main-nav">
@@ -42,6 +42,7 @@
         $(function () {
             //只为刷存在感
             setTimeIndex();
+            //获取菜单列表
             getMenuList();
 
             $(".myData").click(function () {
@@ -56,18 +57,19 @@
                 })
                 MenuObject.openPage({ id: id })
             })
-        })
+        });
         function setTimeIndex() {
             $.ajax({
-                url: "@Url.Action("Index","AHome") ",
+                url: "@Url.Action("Index","Account") ",
                 type: "get"
             }),
                 setTimeout("setTimeIndex()", 60000);
         };
-
+        var menuList = [];
+        //获取菜单列表
         function getMenuList() {
             $.ajax({
-                url: "@Url.Action("GetMenuByName", "AMenu")",
+                url: "@Url.Action("GetMenuByName", "Menu")",
                 type: "post",
                 dataType: "json",
                 success: function (data) {
@@ -85,17 +87,15 @@
                         data.sort(function (a, b) { return a.postion - b.postion; })
                         for (var i = 0; i < data.length; i++) {
                             if (data[i].parentId == menuList[j].id) {
-                                menuList[j].items.push({ text: data[i].name, href: '/' + data[i].controllerName + '/' + data[i].actionName, id: data[i].id.toString() });
+                                menuList[j].items.push({ text: data[i].name, href: '/' + data[i].path, id: data[i].id.toString() });
                             }
                         }
                     }
-                    // menuList.push({ "text": "其他", "items": [{ text: "修改个人资料", href: "/Staff/Edit/@staff.id" }] });
 
                     showMenu();
                 }
             })
         }
-        var menuList = [];
         var MenuObject;
         //显示菜单
         function showMenu() {

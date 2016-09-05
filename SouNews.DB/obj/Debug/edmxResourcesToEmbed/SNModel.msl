@@ -4,10 +4,10 @@
     <EntitySetMapping Name="Menu">
       <EntityTypeMapping TypeName="SouNewsDBModel.Menu">
         <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="parentId" ColumnName="parentId" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="path" ColumnName="path" />
-          <ScalarProperty Name="parent" ColumnName="parent" />
           <ScalarProperty Name="position" ColumnName="position" />
           <ScalarProperty Name="description" ColumnName="description" />
         </MappingFragment>
@@ -33,6 +33,53 @@
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="addtime" ColumnName="addtime" />
           <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogOperate">
+      <EntityTypeMapping TypeName="SouNewsDBModel.LogOperate">
+        <MappingFragment StoreEntitySet="LogOperate">
+          <ScalarProperty Name="addtime" ColumnName="addtime" />
+          <ScalarProperty Name="info" ColumnName="info" />
+          <ScalarProperty Name="path" ColumnName="path" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Power">
+      <EntityTypeMapping TypeName="SouNewsDBModel.Power">
+        <MappingFragment StoreEntitySet="Power">
+          <ScalarProperty Name="path" ColumnName="path" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="SouNewsDBModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="info" ColumnName="info" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolePower">
+      <EntityTypeMapping TypeName="SouNewsDBModel.RolePower">
+        <MappingFragment StoreEntitySet="RolePower">
+          <ScalarProperty Name="powerId" ColumnName="powerId" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRole">
+      <EntityTypeMapping TypeName="SouNewsDBModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRole">
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -42,6 +42,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VUsers.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SouNews.DB\SouNews.DB.csproj">
+      <Project>{947cd2f5-9054-4fda-837b-2d360ba5ba7b}</Project>
+      <Name>SouNews.DB</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

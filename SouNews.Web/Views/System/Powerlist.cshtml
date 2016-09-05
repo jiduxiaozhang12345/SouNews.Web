@@ -1,0 +1,50 @@
+﻿@using ShowPin.MvcPaging;
+@using SouNews.Web;
+
+@model SouNews.DB.Power
+@{
+    var data = ViewBag.data as IPagedList<SouNews.DB.Power>;
+}
+
+<div class="center">
+    @using (Html.BeginForm("Powerlist", "System", FormMethod.Get, new { @class = "form-inline" })) {
+        <div class="form-group" style="display:inline">
+            <label for="name">权限名称:</label>
+            <input type="text" id="name" name="name" value="@ViewBag.name" style="height:30px">
+            <input class="btn btn-facebook" type="submit" value="查询" />
+            @Html.InkindActionLink("", "新建", "PowerAdd", "System", new { @class = "btn btn-success", @datatoggle = "modal", @dataurl = "PowerAdd", @href = "#myiframeModal", @title = "正在创建记录" })
+        </div>
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.path)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in data.Source) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.path)
+            </td>
+            <td>
+                @Html.InkindActionLink("", "编辑", "PowerEdit", "System", new { @class = "btn btn-success", @datatoggle = "modal", @dataurl = "PowerEdit/" + item.id, @href = "#myiframeModal", @title = "正在编辑" })
+                @Ajax.InkindActionLink("", "删除", "PowerDel", "System", new { id = item.id }, new AjaxOptions { HttpMethod = "Post", OnSuccess = "OnSuccessAjax", Confirm = "确认要删除吗？" }, new { @class = "btn btn-danger", @title = "删除提醒" })
+            </td>
+        </tr>
+    }
+</table>
+<div class="pager">
+    @Html.Pager(data.PageSize, data.CurrentPage, data.TotalItemCount
+                   ).Options(o => o.HtmlAttributes(new { @class = "pagination" }).RouteValues(new {
+                       name = ViewBag.name
+                   }))
+</div>

@@ -28,5 +28,10 @@ namespace SouNews.DB
         public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<LogOperate> LogOperate { get; set; }
+        public virtual DbSet<Power> Power { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<RolePower> RolePower { get; set; }
+        public virtual DbSet<UserRole> UserRole { get; set; }
     }
 }

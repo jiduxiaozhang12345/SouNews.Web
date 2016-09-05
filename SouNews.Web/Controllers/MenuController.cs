@@ -16,5 +16,14 @@ namespace SouNews.Web.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 获取菜单
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetMenuByName() {
+            return Json(db.Menu.ToList());
+        }
+
     }
 }
