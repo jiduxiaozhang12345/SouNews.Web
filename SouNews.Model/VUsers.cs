@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace SouNews.Model {
     public class VUsers {
         public Users LoginUser { get; set; }
+        public string Roles { get; set; }
         public List<Power> PowerList { get; set; }
     }
 }

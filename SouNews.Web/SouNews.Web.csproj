@@ -375,6 +375,10 @@
     <Content Include="Views\System\PowerAdd.cshtml" />
     <Content Include="Views\System\PowerAddOrEdit.cshtml" />
     <Content Include="Views\System\PowerEdit.cshtml" />
+    <Content Include="Views\System\Rolelist.cshtml" />
+    <Content Include="Views\System\RoleAdd.cshtml" />
+    <Content Include="Views\System\RoleAddOrEdit.cshtml" />
+    <Content Include="Views\System\RoleEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

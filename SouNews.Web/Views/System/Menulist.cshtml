@@ -11,29 +11,19 @@
         <div class="form-group" style="display:inline">
             <label for="name">菜单名称:</label>
             <input type="text" id="name" name="name" value="@ViewBag.name" style="height:30px">
-            <input class="btn btn-facebook" type="submit" value="查询" />
+            <input class="btn btn-primary" type="submit" value="查询" />
             @Html.InkindActionLink("", "新建", "MenuAdd", "System", new { @class = "btn btn-success", @datatoggle = "modal", @dataurl = "MenuAdd", @href = "#myiframeModal", @title = "正在创建记录" })
         </div>
     }
 </div>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.path)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.position)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.parentId)
-        </th>
-        <th></th>
+        <th>名称</th>
+        <th>路径</th>
+        <th>位置</th>
+        <th>描述</th>
+        <th>父节点</th>
+        <th>操作</th>
     </tr>
 
     @foreach (var item in data.Source) {

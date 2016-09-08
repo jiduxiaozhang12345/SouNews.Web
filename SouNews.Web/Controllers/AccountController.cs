@@ -7,10 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SouNews.Web.Controllers
-{
-    public class AccountController : Controller
-    {
+namespace SouNews.Web.Controllers {
+    public class AccountController : Controller {
         public ActionResult Index() {
             return View();
         }
@@ -30,16 +28,31 @@ namespace SouNews.Web.Controllers
         [HttpPost]
         public ActionResult Login(string username, string password) {
             SouNewsDBEntities db = new SouNewsDBEntities();
-            var pwd = SecurityHelper.MD5(password);
+            string pwd = string.Empty;
+            if (password.Length == 32) {
+                pwd = password;
+            }
+            else {
+                pwd = SecurityHelper.MD5(password);
+            }
             VUsers vuser = new VUsers();
-            var user = db.Users.Where(w=>w.username == username && w.password == pwd).FirstOrDefault();
+            var user = db.Users.Where(w => w.username == username && w.password == pwd).FirstOrDefault();
             if (user != null) {
-                var roleIds = db.UserRole.Where(w=>w.userId == user.id).Select(w=>w.roleId).ToList();
-                List<Power> powerlist = (from a in db.Power
-                                        join b in db.RolePower on a.id equals b.powerId
-                                        where roleIds.Contains(b.roleId)
-                                        select a).ToList();
+                List<Power> powerlist = null;
+                //获取权限列表
+                var roleIds = db.UserRole.Where(w => w.userId == user.id).Select(w => w.roleId).ToList();
+                var roles = string.Join(",", db.Role.Where(w => roleIds.Contains(w.id)).Select(w => w.name).ToList());
+                if (roles.Contains("管理员")) {
+                    powerlist = db.Power.ToList();
+                }
+                else {
+                    powerlist = (from a in db.Power
+                                 join b in db.RolePower on a.id equals b.powerId
+                                 where roleIds.Contains(b.roleId)
+                                 select a).ToList();
+                }
                 vuser.LoginUser = user;
+                vuser.Roles = roles;
                 vuser.PowerList = powerlist;
                 Session["userinfo"] = vuser;
                 return Content("{'message':'ok','t':'" + pwd + "'}");

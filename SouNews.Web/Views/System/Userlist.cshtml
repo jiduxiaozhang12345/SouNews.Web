@@ -11,7 +11,7 @@
         <div class="form-group" style="display:inline">
             <label for="name">用户名:</label>
             <input type="text" id="name" name="name" value="@ViewBag.name" style="height:30px">
-            <input class="btn btn-facebook" type="submit" value="查询" />
+            <input class="btn btn-primary" type="submit" value="查询" />
             @Html.InkindActionLink("", "新建", "UserAdd", "System", new { @class = "btn btn-success", @datatoggle = "modal", @dataurl = "UserAdd", @href = "#myiframeModal", @title = "正在创建记录" })
         </div>
     }

@@ -1,18 +1,30 @@
-﻿using SouNews.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using SouNews.DB;
+using SouNews.Model;
+
 namespace SouNews.Web.Controllers {
     public class BaseController : Controller {
 
-        //用户
-        public VUsers GlobalUser;
-        //白名单
-        private List<string> WriteList = new List<string>() {
+        #region 初始化
+        /// <summary>
+        /// 数据库连接
+        /// </summary>
+        private SouNewsDBEntities db = new SouNewsDBEntities();
 
+        /// <summary>
+        /// 当前用户
+        /// </summary>
+        public VUsers GlobalUser;
+        #endregion
+
+        //白名单
+        private List<string> WhiteList = new List<string>() {
+           
         };
 
         /// <summary>
@@ -22,7 +34,7 @@ namespace SouNews.Web.Controllers {
         protected override void OnActionExecuting(ActionExecutingContext filterContext) {
             string controller = filterContext.RouteData.Values["controller"].ToString().ToLower();
             string action = filterContext.RouteData.Values["action"].ToString().ToLower();
-            if (!WriteList.Contains(controller + "/" + action) && controller != "home" && Session["userinfo"] != null) {
+            if (!WhiteList.Contains(controller + "/" + action) && controller != "home" && Session["userinfo"] == null) {
                 filterContext.Result = new RedirectResult("/Account/Login");
             }
             else {
@@ -30,5 +42,21 @@ namespace SouNews.Web.Controllers {
             }
         }
 
+        /// <summary>
+        /// 是否管理员
+        /// </summary>
+        /// <returns></returns>
+        public bool IsAdmin(int id) {
+            var roles = (from a in db.Role
+                         join b in db.UserRole on a.id equals b.roleId
+                         where b.userId == id
+                         select a.name).ToList();
+            if (roles.Contains("管理员")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
     }
 }

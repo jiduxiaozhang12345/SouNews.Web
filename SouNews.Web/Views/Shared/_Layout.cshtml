@@ -69,7 +69,7 @@
         //获取菜单列表
         function getMenuList() {
             $.ajax({
-                url: "@Url.Action("GetMenuByName", "Menu")",
+                url: "@Url.Action("GetMenus", "System")",
                 type: "post",
                 dataType: "json",
                 success: function (data) {

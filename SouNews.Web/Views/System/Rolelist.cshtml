@@ -1,0 +1,46 @@
+﻿@using ShowPin.MvcPaging;
+@using SouNews.Web;
+
+@model SouNews.DB.Role
+@{
+    var data = ViewBag.data as IPagedList<SouNews.DB.Role>;
+}
+
+<div class="center">
+    @using (Html.BeginForm("Rolelist", "System", FormMethod.Get, new { @class = "form-inline" })) {
+        <div class="form-group" style="display:inline">
+            <label for="name">角色名称:</label>
+            <input type="text" id="name" name="name" value="@ViewBag.name" style="height:30px">
+            <input class="btn btn-primary" type="submit" value="查询" />
+            @Html.InkindActionLink("", "新建", "RoleAdd", "System", new { @class = "btn btn-success", @datatoggle = "modal", @dataurl = "RoleAdd", @href = "#myiframeModal", @title = "正在创建记录" })
+        </div>
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>名称</th>
+        <th>备注</th>
+        <th>操作</th>
+    </tr>
+
+    @foreach (var item in data.Source) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.info)
+            </td>
+            <td>
+                @Html.InkindActionLink("", "编辑", "RoleEdit", "System", new { @class = "btn btn-success", @datatoggle = "modal", @dataurl = "RoleEdit/" + item.id, @href = "#myiframeModal", @title = "正在编辑" })
+                @Ajax.InkindActionLink("", "删除", "RolerDel", "System", new { id = item.id }, new AjaxOptions { HttpMethod = "Post", OnSuccess = "OnSuccessAjax", Confirm = "确认要删除吗？" }, new { @class = "btn btn-danger", @title = "删除提醒" })
+            </td>
+        </tr>
+    }
+</table>
+<div class="pager">
+    @Html.Pager(data.PageSize, data.CurrentPage, data.TotalItemCount
+                   ).Options(o => o.HtmlAttributes(new { @class = "pagination" }).RouteValues(new {
+                       name = ViewBag.name
+                   }))
+</div>

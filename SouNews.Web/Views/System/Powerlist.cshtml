@@ -11,20 +11,16 @@
         <div class="form-group" style="display:inline">
             <label for="name">权限名称:</label>
             <input type="text" id="name" name="name" value="@ViewBag.name" style="height:30px">
-            <input class="btn btn-facebook" type="submit" value="查询" />
+            <input class="btn btn-primary" type="submit" value="查询" />
             @Html.InkindActionLink("", "新建", "PowerAdd", "System", new { @class = "btn btn-success", @datatoggle = "modal", @dataurl = "PowerAdd", @href = "#myiframeModal", @title = "正在创建记录" })
         </div>
     }
 </div>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.path)
-        </th>
-        <th></th>
+        <th>名称</th>
+        <th>路径</th>
+        <th>操作</th>
     </tr>
 
     @foreach (var item in data.Source) {

@@ -106,11 +106,10 @@ namespace SouNews.Web.Controllers {
         /// <param name="page"></param>
         /// <returns></returns>
         public ActionResult Powerlist(string name, int? page = 1) {
-            ShowPin.MvcPaging.IPagedList<Power> powers = null;
             int currentPageIndex = page.HasValue ? page.Value : 1;
             var query = db.Power.Where(w => 1 == 1);
             if (!string.IsNullOrEmpty(name)) {
-                query = query.Where(w=>w.name == name);
+                query = query.Where(w => w.name == name);
             }
             ViewBag.data = query.OrderByDescending(s => s.id).ToPagedList(currentPageIndex, 20);
             ViewBag.name = name;
@@ -203,6 +202,28 @@ namespace SouNews.Web.Controllers {
             return View(new Menu());
         }
 
+        /// <summary>
+        /// 获取菜单列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetMenus() {
+            if (IsAdmin(GlobalUser.LoginUser.id)) {
+                return Json(db.Menu.ToList());
+            }
+            else {
+                List<Menu> list = new List<Menu>();
+                var powerlist = GlobalUser.PowerList.Select(w => w.path).ToList();
+                var menulist = db.Menu.ToList();
+                foreach (var item in menulist) {
+                    if (powerlist.Contains(item.path)) {
+                        list.Add(item);
+                    }
+                }
+                return Json(list);
+            }
+        }
+
         //添加
         public ActionResult MenuAdd() {
             return View(new Menu());
@@ -266,6 +287,83 @@ namespace SouNews.Web.Controllers {
         /// <returns></returns>
         public ActionResult MenuDel(int id) {
             int num = db.Menu.Where(w => w.id == id).Delete();
+            return Json(new { code = num, isdelete = true });
+        }
+        #endregion
+
+        #region 角色管理
+        /// <summary>
+        /// 角色列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Rolelist(string name, int? page = 1) {
+            int currentPageIndex = page.HasValue ? page.Value : 1;
+            var query = db.Role.Where(w => 1 == 1);
+            if (!string.IsNullOrEmpty(name)) {
+                query = query.Where(w => w.name.Contains(name));
+            }
+            ViewBag.data = query.OrderByDescending(w => w.id).ToPagedList(currentPageIndex, 20);
+            return View(new Role());
+        }
+
+        //添加
+        public ActionResult RoleAdd() {
+            return View(new Role());
+        }
+
+        /// <summary>
+        /// 添加    提交
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult RoleAdd(Role role) {
+            var data = db.Role.Where(w => w.name == role.name).FirstOrDefault();
+            if (data != null) {
+                return Json(new { code = 1, message = "用户名已存在！" });
+            }
+            db.Role.Add(role);
+            int num = db.SaveChanges();
+            return Json(new { code = num, isdelete = false });
+        }
+
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RoleEdit(int? id) {
+            if (id == null) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Role role = db.Role.Find(id);
+            if (role == null) {
+                return HttpNotFound();
+            }
+            return View(role);
+        }
+
+        /// <summary>
+        /// 修改    提交
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult RoleEdit(Role role) {
+            var data = db.Role.Where(w => w.name == role.name && w.id != role.id).FirstOrDefault();
+            if (data != null) {
+                return Json(new { code = 1, message = "用户名已存在！" });
+            }
+            int num = db.Role.Where(w => w.id == role.id).Update(w => new Role() {
+                name = role.name,
+                info = role.info
+            });
+            return Json(new { code = num, isdelete = false });
+        }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult RoleDel(int id) {
+            int num = db.Role.Where(w => w.id == id).Delete();
             return Json(new { code = num, isdelete = true });
         }
         #endregion
