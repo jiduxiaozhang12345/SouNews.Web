@@ -96,6 +96,51 @@ namespace SouNews.Web.Controllers {
             int num = db.Users.Where(w => w.id == id).Delete();
             return Json(new { code = num, isdelete = true });
         }
+
+        /// <summary>
+        /// 设置角色  列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult UserSetRole(int userId, string name, int? page = 1) {
+            int currentPageIndex = page.HasValue ? page.Value : 1;
+            //获取员工已有的角色编号
+            var oldroleids = db.UserRole.Where(w => w.userId == userId).Select(w => w.roleId).ToList();
+            ViewBag.userroles = oldroleids;
+            var rolesdata = db.Role.Where(w => 1 == 1);
+            //获取角色列表
+            if (!string.IsNullOrEmpty(name)) {
+                //查询的角色
+                rolesdata = rolesdata.Where(w => w.name.Contains(name));
+                //已有的角色
+                var oldroles = db.Role.Where(w => oldroleids.Contains(w.id));
+                rolesdata = rolesdata.Union(oldroles);
+            }
+            ViewBag.data = rolesdata.OrderByDescending(s => s.id).ToPagedList(currentPageIndex, db.Role.Count());
+            ViewBag.name = name;
+            ViewBag.userId = userId;
+            return View(new Role());
+        }
+
+        /// <summary>
+        /// 设置角色  提交
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult UserSetRole(string ids, int userid) {
+            var data = db.UserRole.Where(w => w.userId == userid).Delete();
+            db.SaveChanges();
+            string[] strs = ids.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var item in strs) {
+                var roleid = Convert.ToInt32(item);
+                UserRole rp = new UserRole() {
+                    roleId = roleid,
+                    userId = userid
+                };
+                db.UserRole.Add(rp);
+            }
+            int count = db.SaveChanges();
+            return Json(new { code = count, isdelete = false });
+        }
         #endregion
 
         #region 权限管理
@@ -109,7 +154,7 @@ namespace SouNews.Web.Controllers {
             int currentPageIndex = page.HasValue ? page.Value : 1;
             var query = db.Power.Where(w => 1 == 1);
             if (!string.IsNullOrEmpty(name)) {
-                query = query.Where(w => w.name == name);
+                query = query.Where(w => w.name.Contains(name));
             }
             ViewBag.data = query.OrderByDescending(s => s.id).ToPagedList(currentPageIndex, 20);
             ViewBag.name = name;
@@ -130,17 +175,12 @@ namespace SouNews.Web.Controllers {
         /// <param name="powers"></param>
         /// <returns></returns>
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult PowerAdd(Power powers) {
-            if (ModelState.IsValid) {
-                powers.name = powers.name.Trim();
-                powers.path = powers.path.ToLower().Trim();
-                db.Power.Add(powers);
-                int count = db.SaveChanges();
-                return Json(new { code = count, isdelete = false });
-            }
-
-            return View(powers);
+            powers.name = powers.name.Trim();
+            powers.path = powers.path.ToLower().Trim();
+            db.Power.Add(powers);
+            int count = db.SaveChanges();
+            return Json(new { code = count, isdelete = false });
         }
 
         /// <summary>
@@ -239,7 +279,9 @@ namespace SouNews.Web.Controllers {
             if (data != null) {
                 return Json(new { code = 1, message = "用户名已存在！" });
             }
-            menu.path = menu.path.Trim().ToLower();
+            if (!string.IsNullOrEmpty(menu.path)) {
+                menu.path = menu.path.Trim().ToLower();
+            }
             db.Menu.Add(menu);
             int num = db.SaveChanges();
             return Json(new { code = num, isdelete = false });
@@ -270,7 +312,9 @@ namespace SouNews.Web.Controllers {
             if (data != null) {
                 return Json(new { code = 1, message = "用户名已存在！" });
             }
-            menu.path = menu.path.Trim().ToLower();
+            if (!string.IsNullOrEmpty(menu.path)) {
+                menu.path = menu.path.Trim().ToLower();
+            }
             int num = db.Menu.Where(w => w.id == menu.id).Update(w => new Menu() {
                 name = menu.name,
                 path = menu.path,
@@ -365,6 +409,48 @@ namespace SouNews.Web.Controllers {
         public ActionResult RoleDel(int id) {
             int num = db.Role.Where(w => w.id == id).Delete();
             return Json(new { code = num, isdelete = true });
+        }
+
+        /// <summary>
+        /// 设置权限   列表
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <param name="name"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        public ActionResult RoleSetPower(int roleId, string name, int? page = 1) {
+            int currentPageIndex = page.HasValue ? page.Value : 1;
+            var query = db.Power.Where(w=>1==1);
+            //获取权限列表
+            if (!string.IsNullOrEmpty(name)) {
+                query = query.Where(w => w.name == name);
+            }
+            //获取角色对应的权限编号
+            ViewBag.rolepowers = db.RolePower.Where(w => w.roleId == roleId).Select(w => w.powerId).ToList();
+            ViewBag.powers = query.OrderByDescending(s => s.id).ToPagedList(currentPageIndex, 300);
+            ViewBag.name = name;
+            ViewBag.roleId = roleId;
+            return View(new Power());
+        }
+
+        /// <summary>
+        /// 设置权限
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult RoleSetPower(string ids, int roleId) {
+            var data = db.RolePower.Where(w => w.roleId == roleId).Delete();
+            string[] strs = ids.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var item in strs) {
+                var powerid = Convert.ToInt32(item);
+                RolePower rp = new RolePower() {
+                    powerId = powerid,
+                    roleId = roleId
+                };
+                db.RolePower.Add(rp);
+            }
+            db.SaveChanges();
+            return Json(new { code = 1, isdelete = false });
         }
         #endregion
     }

@@ -12,6 +12,7 @@ namespace SouNews.DB
     using System;
     using System.Collections.Generic;
     
+    [Serializable]
     public partial class Menu
     {
         public int id { get; set; }

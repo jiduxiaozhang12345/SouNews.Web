@@ -6,13 +6,13 @@
     <edmx:Diagrams>
       <Diagram DiagramId="342822cae40f4b64a4fc2da2d5a99e5d" Name="Diagram1">
         <EntityTypeShape EntityType="SouNewsDBModel.Menu" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SouNewsDBModel.News" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SouNewsDBModel.Users" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SouNewsDBModel.LogOperate" Width="1.5" PointX="3.75" PointY="3.75" />
         <EntityTypeShape EntityType="SouNewsDBModel.Power" Width="1.5" PointX="5.75" PointY="0.75" />
         <EntityTypeShape EntityType="SouNewsDBModel.Role" Width="1.5" PointX="5.75" PointY="3.75" />
         <EntityTypeShape EntityType="SouNewsDBModel.RolePower" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="SouNewsDBModel.UserRole" Width="1.5" PointX="3.375" PointY="6.75" />
+        <EntityTypeShape EntityType="SouNewsDBModel.NewsInfo" Width="1.5" PointX="5.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

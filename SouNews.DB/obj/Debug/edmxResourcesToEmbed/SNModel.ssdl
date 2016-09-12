@@ -21,7 +21,7 @@
     <Property Name="position" Type="int" />
     <Property Name="description" Type="varchar" MaxLength="100" />
   </EntityType>
-  <EntityType Name="News">
+  <EntityType Name="NewsInfo">
     <Key>
       <PropertyRef Name="id" />
     </Key>
@@ -77,7 +77,7 @@
   <EntityContainer Name="SouNewsDBModelStoreContainer">
     <EntitySet Name="LogOperate" EntityType="Self.LogOperate" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NewsInfo" EntityType="Self.NewsInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Power" EntityType="Self.Power" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RolePower" EntityType="Self.RolePower" Schema="dbo" store:Type="Tables" />

@@ -140,7 +140,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\SystemController.cs" />
     <Compile Include="Filter\HtmlActionLink.cs" />
     <Compile Include="Global.asax.cs">
@@ -379,9 +379,12 @@
     <Content Include="Views\System\RoleAdd.cshtml" />
     <Content Include="Views\System\RoleAddOrEdit.cshtml" />
     <Content Include="Views\System\RoleEdit.cshtml" />
+    <Content Include="Views\System\UserSetRole.cshtml" />
+    <Content Include="Views\System\RoleSetPower.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\News\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

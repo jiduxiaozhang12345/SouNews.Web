@@ -2,28 +2,28 @@
 
 <div class="form-horizontal">
     <div class="form-group">
-        @Html.LabelFor(model => model.username, new { @class = "control-label col-md-2" })
+        <label class="control-label col-md-2">用户名</label>
         <div class="col-md-10">
             @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.password, new { @class = "control-label col-md-2" })
+        <label class="control-label col-md-2">密码</label>
         <div class="col-md-10">
             @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.addtime, new { @class = "control-label col-md-2" })
+    @*<div class="form-group">
+        <label class="control-label col-md-2">时间</label>
         <div class="col-md-10">
-            @Html.EditorFor(model => model.addtime, new { htmlAttributes = new { @class = "form-control" } })
+            <input type="text" name="addtime" id="addtime" value="@Model.addtime" class="form-control" style="height:30px" onfocus="WdatePicker({ startDate: '%y-%M-%d %H:%m:%s', dateFmt: 'yyyy-MM-dd HH:mm:ss'})" />
         </div>
-    </div>
+    </div>*@
 
     <div class="form-group">
-        @Html.LabelFor(model => model.email, new { @class = "control-label col-md-2" })
+        <label class="control-label col-md-2">邮箱</label>
         <div class="col-md-10">
             @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
         </div>
@@ -31,7 +31,7 @@
 
     <div class="form-group">
         <div class="col-sm-offset-10 col-sm-2">
-            <button type="button" id="btnSubmit" onclick="checkData()" class="btn btn-primary">保存</button>
+            <button type="submit" class="btn btn-primary">保存</button>
         </div>
     </div>
 </div>

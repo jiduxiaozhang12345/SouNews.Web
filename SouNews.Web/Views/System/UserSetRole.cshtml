@@ -1,0 +1,81 @@
+﻿@using ShowPin.MvcPaging;
+@model SouNews.DB.Role
+@{
+    var data = ViewBag.data as IPagedList<SouNews.DB.Role>;
+}
+<div class="alert inner-search" style="font-size:13px">
+    @using (Html.BeginForm("UserSetRole", "System", System.Web.Mvc.FormMethod.Get, new { @class = "form-inline" })) {
+    <input type="hidden" id="userId" name="userId" value="@ViewBag.userId" />
+        <div class="form-group" style="display:inline">
+            <label for="name">角色名称:</label>
+            <input type="text" id="name" name="name" value="@ViewBag.name" style="height:30px">
+            <input class="btn btn-primary" type="submit" value="查询" />
+            <input class="btn btn-success" type="button" onclick="SaveData()" value="保存" />
+        </div>
+    }
+</div>
+<input type="hidden" value="@ViewBag.rolepowers" id="rolepowers" />
+<table class="table">
+    <tr>
+        <th>选择</th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.info)
+        </th>
+    </tr>
+
+    @foreach (var item in data.Source) {
+        <tr>
+            <td>
+                @if (ViewBag.userroles.Contains(item.id)) {
+                    <input type="checkbox" checked class="check" roleid="@item.id" />
+                }
+                else {
+                    <input type="checkbox" class="check" roleid="@item.id" />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.info)
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="pager">
+    @Html.Pager(data.PageSize, data.CurrentPage, data.TotalItemCount
+                           ).Options(o => o.HtmlAttributes(new { @class = "pagination" }).RouteValues(
+                                              new {
+                                                  userId = ViewBag.userId,
+                                                  name = ViewBag.name
+                                              }
+                                     ))
+</div>
+<script>
+    $(function () {
+        if ($("#name").val() == "") {
+            $("#name").val('@Server.UrlDecode(Request.QueryString["depart"])');
+        }
+
+    })
+    //保存数据
+    function SaveData() {
+        var ids = "";
+        $('.check').each(function () {
+            if ($(this).prop('checked')) {
+                ids += $(this).attr('roleid') + ",";
+            }
+        });
+        ids = ids.substr(0, ids.length - 1);
+        $.ajax({
+            url: "/System/UserSetRole",
+            type: "Post",
+            data: { ids: ids, userId: $('#userId').val() },
+            success: OnSuccessAjax
+        });
+    }
+</script>

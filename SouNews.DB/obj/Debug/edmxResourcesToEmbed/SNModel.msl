@@ -13,18 +13,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="News">
-      <EntityTypeMapping TypeName="SouNewsDBModel.News">
-        <MappingFragment StoreEntitySet="News">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="title" ColumnName="title" />
-          <ScalarProperty Name="contents" ColumnName="contents" />
-          <ScalarProperty Name="type" ColumnName="type" />
-          <ScalarProperty Name="state" ColumnName="state" />
-          <ScalarProperty Name="addtime" ColumnName="addtime" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="SouNewsDBModel.Users">
         <MappingFragment StoreEntitySet="Users">
@@ -79,6 +67,18 @@
         <MappingFragment StoreEntitySet="UserRole">
           <ScalarProperty Name="roleId" ColumnName="roleId" />
           <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsInfo">
+      <EntityTypeMapping TypeName="SouNewsDBModel.NewsInfo">
+        <MappingFragment StoreEntitySet="NewsInfo">
+          <ScalarProperty Name="addtime" ColumnName="addtime" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="contents" ColumnName="contents" />
+          <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

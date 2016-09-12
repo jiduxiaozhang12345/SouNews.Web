@@ -4,35 +4,35 @@
     @Html.HiddenFor(model => model.id)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.name, new { @class = "control-label col-md-2" })
+        <label class="control-label col-md-2">菜单名称</label>
         <div class="col-md-10">
             @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.path, new { @class = "control-label col-md-2" })
+        <label class="control-label col-md-2">路径</label>
         <div class="col-md-10">
             @Html.EditorFor(model => model.path, new { htmlAttributes = new { @class = "form-control" } })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.position, new { @class = "control-label col-md-2" })
+        <label class="control-label col-md-2">位置</label>
         <div class="col-md-10">
             @Html.EditorFor(model => model.position, new { htmlAttributes = new { @class = "form-control" } })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.description, new { @class = "control-label col-md-2" })
+        <label class="control-label col-md-2">描述</label>
         <div class="col-md-10">
             @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.parentId, new { @class = "control-label col-md-2" })
+        <label class="control-label col-md-2">父节点</label>
         <div class="col-md-10">
             @Html.EditorFor(model => model.parentId, new { htmlAttributes = new { @class = "form-control" } })
         </div>
@@ -40,7 +40,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <button type="button" id="btnSubmit" onclick="checkData()" class="btn btn-primary">保存</button>
+            <button type="submit" class="btn btn-primary">保存</button>
         </div>
     </div>
 </div>

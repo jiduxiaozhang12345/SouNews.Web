@@ -12,7 +12,8 @@ namespace SouNews.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class News
+    [Serializable]
+    public partial class NewsInfo
     {
         public int id { get; set; }
         public string title { get; set; }

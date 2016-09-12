@@ -1,0 +1,77 @@
+﻿@using ShowPin.MvcPaging;
+
+@model SouNews.DB.Power
+@{
+    var data = ViewBag.powers as IPagedList<SouNews.DB.Power>;
+}
+<div class="alert inner-search" style="font-size:13px">
+    @using (Html.BeginForm("RoleSetPower", "System", FormMethod.Get, new { @class = "form-inline" })) {
+        <input type="hidden" id="roleId" name="roleId" value="@ViewBag.roleId" />
+        <div class="form-group" style="display:inline">
+            <label for="name">权限名称:</label>
+            <input type="text" id="name" name="name" value="@ViewBag.name" style="height:30px">
+            <input class="btn btn-primary" type="submit" value="查询" />
+            <input class="btn btn-success" type="button" onclick="SaveData()" value="保存" />
+        </div>
+    }
+</div>
+<input type="hidden" value="@ViewBag.rolepowers" id="rolepowers" />
+<table class="table">
+    <tr>
+        <th>选择</th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.path)
+        </th>
+    </tr>
+
+    @foreach (var item in data.Source) {
+        <tr>
+            <td>
+                @if (ViewBag.rolepowers.Contains(item.id)) {
+                    <input type="checkbox" checked class="check" powerid="@item.id" />
+                }
+                else {
+                    <input type="checkbox" class="check" powerid="@item.id" />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.path)
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="pager">
+    @Html.Pager(data.PageSize, data.CurrentPage, data.TotalItemCount
+                           ).Options(o => o.HtmlAttributes(new { @class = "pagination" }).RouteValues(
+                                                      new {
+                                                          roleId = ViewBag.roleId
+                                                      }
+                                             ))
+</div>
+
+<script>
+
+    //保存数据
+    function SaveData() {
+        var ids = "";
+        $('.check').each(function () {
+            if ($(this).prop('checked')) {
+                ids += $(this).attr('powerid') + ",";
+            }
+        });
+        ids = ids.substr(0, ids.length - 1);
+        $.ajax({
+            url: "/System/RoleSetPower",
+            type: "Post",
+            data: { ids: ids, roleId: $('#roleId').val() },
+            success: OnSuccessAjax
+        });
+    }
+</script>

@@ -33,6 +33,7 @@
             </td>
             <td>
                 @Html.InkindActionLink("", "编辑", "RoleEdit", "System", new { @class = "btn btn-success", @datatoggle = "modal", @dataurl = "RoleEdit/" + item.id, @href = "#myiframeModal", @title = "正在编辑" })
+                @Html.InkindActionLink("", "权限", "RoleSetPower", "System", new { @class = "btn btn-success", @datatoggle = "modal", @dataurl = "RoleSetPower?roleId=" + item.id, @href = "#myiframeModal", @title = "权限设置" })
                 @Ajax.InkindActionLink("", "删除", "RolerDel", "System", new { id = item.id }, new AjaxOptions { HttpMethod = "Post", OnSuccess = "OnSuccessAjax", Confirm = "确认要删除吗？" }, new { @class = "btn btn-danger", @title = "删除提醒" })
             </td>
         </tr>

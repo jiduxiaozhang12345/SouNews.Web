@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SouNews.Model {
+    [Serializable]
     public class VUsers {
         public Users LoginUser { get; set; }
         public string Roles { get; set; }

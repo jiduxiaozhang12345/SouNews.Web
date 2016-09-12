@@ -1,10 +1,10 @@
 F:\Projects\SouNews.Web\SouNews.Model\bin\Debug\SouNews.Model.dll
 F:\Projects\SouNews.Web\SouNews.Model\bin\Debug\SouNews.Model.pdb
-F:\Projects\SouNews.Web\SouNews.Model\obj\Debug\SouNews.Model.csprojResolveAssemblyReference.cache
-F:\Projects\SouNews.Web\SouNews.Model\obj\Debug\SouNews.Model.dll
-F:\Projects\SouNews.Web\SouNews.Model\obj\Debug\SouNews.Model.pdb
 F:\Projects\SouNews.Web\SouNews.Model\bin\Debug\SouNews.DB.dll
 F:\Projects\SouNews.Web\SouNews.Model\bin\Debug\EntityFramework.dll
 F:\Projects\SouNews.Web\SouNews.Model\bin\Debug\SouNews.DB.pdb
 F:\Projects\SouNews.Web\SouNews.Model\bin\Debug\EntityFramework.xml
 F:\Projects\SouNews.Web\SouNews.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+F:\Projects\SouNews.Web\SouNews.Model\obj\Debug\SouNews.Model.csprojResolveAssemblyReference.cache
+F:\Projects\SouNews.Web\SouNews.Model\obj\Debug\SouNews.Model.dll
+F:\Projects\SouNews.Web\SouNews.Model\obj\Debug\SouNews.Model.pdb

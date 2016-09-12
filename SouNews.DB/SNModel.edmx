@@ -26,7 +26,7 @@
           <Property Name="position" Type="int" />
           <Property Name="description" Type="varchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="News">
+        <EntityType Name="NewsInfo">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -82,7 +82,7 @@
         <EntityContainer Name="SouNewsDBModelStoreContainer">
           <EntitySet Name="LogOperate" EntityType="Self.LogOperate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsInfo" EntityType="Self.NewsInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Power" EntityType="Self.Power" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RolePower" EntityType="Self.RolePower" Schema="dbo" store:Type="Tables" />
@@ -104,17 +104,6 @@
           <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="parentId" Type="Int32" />
         </EntityType>
-        <EntityType Name="News">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="state" Type="Int32" />
-          <Property Name="addtime" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="id" />
@@ -127,13 +116,13 @@
         </EntityType>
         <EntityContainer Name="SouNewsDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Menu" EntityType="Self.Menu" />
-          <EntitySet Name="News" EntityType="Self.News" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="LogOperate" EntityType="SouNewsDBModel.LogOperate" />
           <EntitySet Name="Power" EntityType="SouNewsDBModel.Power" />
           <EntitySet Name="Role" EntityType="SouNewsDBModel.Role" />
           <EntitySet Name="RolePower" EntityType="SouNewsDBModel.RolePower" />
           <EntitySet Name="UserRole" EntityType="SouNewsDBModel.UserRole" />
+          <EntitySet Name="NewsInfo" EntityType="SouNewsDBModel.NewsInfo" />
         </EntityContainer>
         <EntityType Name="LogOperate">
           <Key>
@@ -177,6 +166,17 @@
           <Property Name="userId" Type="Int32" />
           <Property Name="roleId" Type="Int32" />
         </EntityType>
+        <EntityType Name="NewsInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="Int32" />
+          <Property Name="addtime" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -192,18 +192,6 @@
                 <ScalarProperty Name="path" ColumnName="path" />
                 <ScalarProperty Name="position" ColumnName="position" />
                 <ScalarProperty Name="description" ColumnName="description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="News">
-            <EntityTypeMapping TypeName="SouNewsDBModel.News">
-              <MappingFragment StoreEntitySet="News">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="contents" ColumnName="contents" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="addtime" ColumnName="addtime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -261,6 +249,18 @@
               <MappingFragment StoreEntitySet="UserRole">
                 <ScalarProperty Name="roleId" ColumnName="roleId" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsInfo">
+            <EntityTypeMapping TypeName="SouNewsDBModel.NewsInfo">
+              <MappingFragment StoreEntitySet="NewsInfo">
+                <ScalarProperty Name="addtime" ColumnName="addtime" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="contents" ColumnName="contents" />
+                <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

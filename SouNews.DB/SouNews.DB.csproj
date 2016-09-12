@@ -54,7 +54,7 @@
     <Compile Include="Menu.cs">
       <DependentUpon>SNModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="News.cs">
+    <Compile Include="NewsInfo.cs">
       <DependentUpon>SNModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Power.cs">
