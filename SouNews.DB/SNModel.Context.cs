@@ -32,6 +32,7 @@ namespace SouNews.DB
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<RolePower> RolePower { get; set; }
         public virtual DbSet<UserRole> UserRole { get; set; }
-        public virtual DbSet<NewsInfo> NewsInfo { get; set; }
+        public virtual DbSet<Article> Article { get; set; }
+        public virtual DbSet<Module> Module { get; set; }
     }
 }

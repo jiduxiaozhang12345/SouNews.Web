@@ -12,7 +12,8 @@
         <EntityTypeShape EntityType="SouNewsDBModel.Role" Width="1.5" PointX="5.75" PointY="3.75" />
         <EntityTypeShape EntityType="SouNewsDBModel.RolePower" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="SouNewsDBModel.UserRole" Width="1.5" PointX="3.375" PointY="6.75" />
-        <EntityTypeShape EntityType="SouNewsDBModel.NewsInfo" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="SouNewsDBModel.Article" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="SouNewsDBModel.Module" Width="1.5" PointX="7.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

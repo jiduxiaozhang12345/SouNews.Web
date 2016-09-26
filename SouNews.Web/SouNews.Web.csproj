@@ -381,10 +381,17 @@
     <Content Include="Views\System\RoleEdit.cshtml" />
     <Content Include="Views\System\UserSetRole.cshtml" />
     <Content Include="Views\System\RoleSetPower.cshtml" />
+    <Content Include="Views\News\Articlelist.cshtml" />
+    <Content Include="Views\News\ArticleAdd.cshtml" />
+    <Content Include="Views\News\ArticleAddOrEdit.cshtml" />
+    <Content Include="Views\News\ArticleEdit.cshtml" />
+    <Content Include="Views\News\Modulelist.cshtml" />
+    <Content Include="Views\News\ModuleAdd.cshtml" />
+    <Content Include="Views\News\ModuleAddOrEdit.cshtml" />
+    <Content Include="Views\News\ModuleEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\News\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

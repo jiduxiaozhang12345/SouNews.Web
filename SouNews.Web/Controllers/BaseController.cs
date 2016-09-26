@@ -6,8 +6,10 @@ using System.Web.Mvc;
 
 using SouNews.DB;
 using SouNews.Model;
+using System.Web.SessionState;
 
 namespace SouNews.Web.Controllers {
+    [SessionState(SessionStateBehavior.ReadOnly)]
     public class BaseController : Controller {
 
         #region 初始化
@@ -24,7 +26,8 @@ namespace SouNews.Web.Controllers {
 
         //白名单
         private List<string> WhiteList = new List<string>() {
-           
+           "home",
+           "account/login",
         };
 
         /// <summary>
@@ -34,7 +37,11 @@ namespace SouNews.Web.Controllers {
         protected override void OnActionExecuting(ActionExecutingContext filterContext) {
             string controller = filterContext.RouteData.Values["controller"].ToString().ToLower();
             string action = filterContext.RouteData.Values["action"].ToString().ToLower();
-            if (!WhiteList.Contains(controller + "/" + action) && controller != "home" && Session["userinfo"] == null) {
+            //白名单，不需要验证
+            if (WhiteList.Any(w => w.ToLower() == controller + "/" + action) || WhiteList.Any(w => w.ToLower() == controller)) {
+                return;
+            }
+            if (Session["userinfo"] == null) {
                 filterContext.Result = new RedirectResult("/Account/Login");
             }
             else {

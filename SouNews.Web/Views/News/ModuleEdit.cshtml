@@ -1,0 +1,8 @@
+﻿@model SouNews.DB.Module
+
+<body>
+    @using (Ajax.BeginForm("ModuleEdit", "News", new { @class = "form-horizontal" }, new AjaxOptions { UpdateTargetId = "updateTargetId", HttpMethod = "Post", OnSuccess = "OnSuccessAjax", OnBegin = "OnBeginAjaxBeginForm", OnComplete = "OnCompleteAjaxBeginForm", OnFailure = "OnFailureAjaxBeginForm" })) {
+        @Html.Partial("ModuleAddOrEdit", Model);
+    }
+</body>
+

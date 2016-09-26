@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SouNewsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" />
+          <Property Name="contents" Type="varchar(max)" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="module" Type="varchar" MaxLength="50" />
+          <Property Name="state" Type="int" />
+          <Property Name="addtime" Type="datetime" />
+        </EntityType>
         <EntityType Name="LogOperate">
           <Key>
             <PropertyRef Name="id" />
@@ -26,15 +38,13 @@
           <Property Name="position" Type="int" />
           <Property Name="description" Type="varchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="NewsInfo">
+        <EntityType Name="Module">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="title" Type="varchar" MaxLength="100" />
-          <Property Name="contents" Type="varchar(max)" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
           <Property Name="type" Type="varchar" MaxLength="50" />
-          <Property Name="state" Type="int" />
           <Property Name="addtime" Type="datetime" />
         </EntityType>
         <EntityType Name="Power">
@@ -80,9 +90,10 @@
           <Property Name="email" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="SouNewsDBModelStoreContainer">
+          <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LogOperate" EntityType="Self.LogOperate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="NewsInfo" EntityType="Self.NewsInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Power" EntityType="Self.Power" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RolePower" EntityType="Self.RolePower" Schema="dbo" store:Type="Tables" />
@@ -122,7 +133,8 @@
           <EntitySet Name="Role" EntityType="SouNewsDBModel.Role" />
           <EntitySet Name="RolePower" EntityType="SouNewsDBModel.RolePower" />
           <EntitySet Name="UserRole" EntityType="SouNewsDBModel.UserRole" />
-          <EntitySet Name="NewsInfo" EntityType="SouNewsDBModel.NewsInfo" />
+          <EntitySet Name="Article" EntityType="SouNewsDBModel.Article" />
+          <EntitySet Name="Module" EntityType="SouNewsDBModel.Module" />
         </EntityContainer>
         <EntityType Name="LogOperate">
           <Key>
@@ -166,7 +178,7 @@
           <Property Name="userId" Type="Int32" />
           <Property Name="roleId" Type="Int32" />
         </EntityType>
-        <EntityType Name="NewsInfo">
+        <EntityType Name="Article">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -174,7 +186,17 @@
           <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="module" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
+          <Property Name="addtime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="addtime" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
@@ -253,14 +275,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="NewsInfo">
-            <EntityTypeMapping TypeName="SouNewsDBModel.NewsInfo">
-              <MappingFragment StoreEntitySet="NewsInfo">
+          <EntitySetMapping Name="Article">
+            <EntityTypeMapping TypeName="SouNewsDBModel.Article">
+              <MappingFragment StoreEntitySet="Article">
                 <ScalarProperty Name="addtime" ColumnName="addtime" />
                 <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="module" ColumnName="module" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="contents" ColumnName="contents" />
                 <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Module">
+            <EntityTypeMapping TypeName="SouNewsDBModel.Module">
+              <MappingFragment StoreEntitySet="Module">
+                <ScalarProperty Name="addtime" ColumnName="addtime" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

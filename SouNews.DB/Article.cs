@@ -13,12 +13,13 @@ namespace SouNews.DB
     using System.Collections.Generic;
     
     [Serializable]
-    public partial class NewsInfo
+    public partial class Article
     {
         public int id { get; set; }
         public string title { get; set; }
         public string contents { get; set; }
         public string type { get; set; }
+        public string module { get; set; }
         public Nullable<int> state { get; set; }
         public Nullable<System.DateTime> addtime { get; set; }
     }

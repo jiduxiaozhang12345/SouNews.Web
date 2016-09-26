@@ -1,0 +1,62 @@
+﻿@using ShowPin.MvcPaging;
+@using SouNews.Web;
+
+@model SouNews.DB.Article
+@{
+    var data = ViewBag.data as IPagedList<SouNews.DB.Article>;
+}
+
+<div class="center">
+    @using (Html.BeginForm("Articlelist", "News", FormMethod.Get, new { @class = "form-inline" })) {
+        <div class="form-group" style="display:inline">
+            <label for="name">文章标题:</label>
+            <input type="text" id="name" name="name" value="@ViewBag.name" style="height:30px">
+            <input class="btn btn-primary" type="submit" value="查询" />
+            @Html.InkindActionLink("", "新建", "ArticleAdd", "News", new { @class = "btn btn-success", @datatoggle = "modal", @dataurl = "ArticleAdd", @href = "#myiframeModal", @title = "正在创建记录" })
+        </div>
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>序号</th>
+        <th>标题</th>
+        <th>内容</th>
+        <th>类型</th>
+        <th>状态</th>
+        <th>时间</th>
+        <th>操作</th>
+    </tr>
+
+    @foreach (var item in data.Source) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contents)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.state)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.addtime)
+            </td>
+            <td>
+                @Html.InkindActionLink("", "编辑", "ArticleEdit", "News", new { @class = "btn btn-success", @datatoggle = "modal", @dataurl = "ArticleEdit/" + item.id, @href = "#myiframeModal", @title = "正在编辑" })
+                @Ajax.InkindActionLink("", "删除", "ArticleDel", "News", new { id = item.id }, new AjaxOptions { HttpMethod = "Post", OnSuccess = "OnSuccessAjax", Confirm = "确认要删除吗？" }, new { @class = "btn btn-danger", @title = "删除提醒" })
+            </td>
+        </tr>
+    }
+</table>
+<div class="pager">
+    @Html.Pager(data.PageSize, data.CurrentPage, data.TotalItemCount
+                   ).Options(o => o.HtmlAttributes(new { @class = "pagination" }).RouteValues(new {
+                       name = ViewBag.name
+                   }))
+</div>

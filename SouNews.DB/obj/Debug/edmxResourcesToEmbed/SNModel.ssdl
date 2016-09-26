@@ -1,5 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SouNewsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="100" />
+    <Property Name="contents" Type="varchar(max)" />
+    <Property Name="type" Type="varchar" MaxLength="50" />
+    <Property Name="module" Type="varchar" MaxLength="50" />
+    <Property Name="state" Type="int" />
+    <Property Name="addtime" Type="datetime" />
+  </EntityType>
   <EntityType Name="LogOperate">
     <Key>
       <PropertyRef Name="id" />
@@ -21,15 +33,13 @@
     <Property Name="position" Type="int" />
     <Property Name="description" Type="varchar" MaxLength="100" />
   </EntityType>
-  <EntityType Name="NewsInfo">
+  <EntityType Name="Module">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="title" Type="varchar" MaxLength="100" />
-    <Property Name="contents" Type="varchar(max)" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
     <Property Name="type" Type="varchar" MaxLength="50" />
-    <Property Name="state" Type="int" />
     <Property Name="addtime" Type="datetime" />
   </EntityType>
   <EntityType Name="Power">
@@ -75,9 +85,10 @@
     <Property Name="email" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityContainer Name="SouNewsDBModelStoreContainer">
+    <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LogOperate" EntityType="Self.LogOperate" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="NewsInfo" EntityType="Self.NewsInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Power" EntityType="Self.Power" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RolePower" EntityType="Self.RolePower" Schema="dbo" store:Type="Tables" />

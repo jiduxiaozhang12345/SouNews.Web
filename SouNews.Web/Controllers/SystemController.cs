@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Net;
 using System.Data.Entity;
+using System.Web.SessionState;
 
 using EntityFramework.Extensions;
 using ShowPin.MvcPaging;
@@ -14,6 +15,7 @@ using SouNews.Model;
 using SouNews.Common;
 
 namespace SouNews.Web.Controllers {
+    [SessionState(SessionStateBehavior.Required)]
     public class SystemController : BaseController {
         private SouNewsDBEntities db = new SouNewsDBEntities();
 

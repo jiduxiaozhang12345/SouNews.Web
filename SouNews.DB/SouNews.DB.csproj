@@ -48,13 +48,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Article.cs">
+      <DependentUpon>SNModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="LogOperate.cs">
       <DependentUpon>SNModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
       <DependentUpon>SNModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="NewsInfo.cs">
+    <Compile Include="Module.cs">
       <DependentUpon>SNModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Power.cs">

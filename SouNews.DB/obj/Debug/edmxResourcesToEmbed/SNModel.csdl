@@ -29,7 +29,8 @@
     <EntitySet Name="Role" EntityType="SouNewsDBModel.Role" />
     <EntitySet Name="RolePower" EntityType="SouNewsDBModel.RolePower" />
     <EntitySet Name="UserRole" EntityType="SouNewsDBModel.UserRole" />
-    <EntitySet Name="NewsInfo" EntityType="SouNewsDBModel.NewsInfo" />
+    <EntitySet Name="Article" EntityType="SouNewsDBModel.Article" />
+    <EntitySet Name="Module" EntityType="SouNewsDBModel.Module" />
   </EntityContainer>
   <EntityType Name="LogOperate">
     <Key>
@@ -73,7 +74,7 @@
     <Property Name="userId" Type="Int32" />
     <Property Name="roleId" Type="Int32" />
   </EntityType>
-  <EntityType Name="NewsInfo">
+  <EntityType Name="Article">
     <Key>
       <PropertyRef Name="id" />
     </Key>
@@ -81,7 +82,17 @@
     <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="module" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="state" Type="Int32" />
+    <Property Name="addtime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Module">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="addtime" Type="DateTime" Precision="3" />
   </EntityType>
 </Schema>

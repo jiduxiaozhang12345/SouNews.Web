@@ -71,14 +71,25 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="NewsInfo">
-      <EntityTypeMapping TypeName="SouNewsDBModel.NewsInfo">
-        <MappingFragment StoreEntitySet="NewsInfo">
+    <EntitySetMapping Name="Article">
+      <EntityTypeMapping TypeName="SouNewsDBModel.Article">
+        <MappingFragment StoreEntitySet="Article">
           <ScalarProperty Name="addtime" ColumnName="addtime" />
           <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="module" ColumnName="module" />
           <ScalarProperty Name="type" ColumnName="type" />
           <ScalarProperty Name="contents" ColumnName="contents" />
           <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Module">
+      <EntityTypeMapping TypeName="SouNewsDBModel.Module">
+        <MappingFragment StoreEntitySet="Module">
+          <ScalarProperty Name="addtime" ColumnName="addtime" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
