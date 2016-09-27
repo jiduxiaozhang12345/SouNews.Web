@@ -22,5 +22,6 @@ namespace SouNews.DB
         public string module { get; set; }
         public Nullable<int> state { get; set; }
         public Nullable<System.DateTime> addtime { get; set; }
+        public string pic { get; set; }
     }
 }

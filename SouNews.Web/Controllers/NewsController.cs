@@ -49,7 +49,6 @@ namespace SouNews.Web.Controllers {
             if (data != null) {
                 return Json(new { code = 1, message = "此标题已存在！" });
             }
-            news.state = 1;
             news.addtime = DateTime.Now;
             db.Article.Add(news);
             int num = db.SaveChanges();

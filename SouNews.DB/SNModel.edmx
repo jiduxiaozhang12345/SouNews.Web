@@ -16,6 +16,7 @@
           <Property Name="module" Type="varchar" MaxLength="50" />
           <Property Name="state" Type="int" />
           <Property Name="addtime" Type="datetime" />
+          <Property Name="pic" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="LogOperate">
           <Key>
@@ -189,6 +190,7 @@
           <Property Name="module" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
           <Property Name="addtime" Type="DateTime" Precision="3" />
+          <Property Name="pic" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Module">
           <Key>
@@ -278,6 +280,7 @@
           <EntitySetMapping Name="Article">
             <EntityTypeMapping TypeName="SouNewsDBModel.Article">
               <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="pic" ColumnName="pic" />
                 <ScalarProperty Name="addtime" ColumnName="addtime" />
                 <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="module" ColumnName="module" />

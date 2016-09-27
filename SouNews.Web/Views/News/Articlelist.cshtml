@@ -12,7 +12,7 @@
             <label for="name">文章标题:</label>
             <input type="text" id="name" name="name" value="@ViewBag.name" style="height:30px">
             <input class="btn btn-primary" type="submit" value="查询" />
-            @Html.InkindActionLink("", "新建", "ArticleAdd", "News", new { @class = "btn btn-success", @datatoggle = "modal", @dataurl = "ArticleAdd", @href = "#myiframeModal", @title = "正在创建记录" })
+            @Html.InkindActionLink("", "新建", "ArticleAdd", "News", new { @class = "btn btn-success", @datatoggle = "modal", @dataurl = "ArticleAdd", @href = "#myiframeModal", @title = "正在创建记录", @datawidth = "850", @dataheight = "700" })
         </div>
     }
 </div>
@@ -42,13 +42,18 @@
                 @Html.DisplayFor(modelItem => item.type)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.state)
+                @if (item.state == 1) {
+                    <span>正常</span>
+                }
+                else {
+                    <span>禁用</span>
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.addtime)
             </td>
             <td>
-                @Html.InkindActionLink("", "编辑", "ArticleEdit", "News", new { @class = "btn btn-success", @datatoggle = "modal", @dataurl = "ArticleEdit/" + item.id, @href = "#myiframeModal", @title = "正在编辑" })
+                @Html.InkindActionLink("", "编辑", "ArticleEdit", "News", new { @class = "btn btn-success", @datatoggle = "modal", @dataurl = "ArticleEdit/" + item.id, @href = "#myiframeModal", @title = "正在编辑", @datawidth = "850", @dataheight = "700" })
                 @Ajax.InkindActionLink("", "删除", "ArticleDel", "News", new { id = item.id }, new AjaxOptions { HttpMethod = "Post", OnSuccess = "OnSuccessAjax", Confirm = "确认要删除吗？" }, new { @class = "btn btn-danger", @title = "删除提醒" })
             </td>
         </tr>

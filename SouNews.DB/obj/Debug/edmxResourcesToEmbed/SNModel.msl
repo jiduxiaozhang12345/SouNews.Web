@@ -74,6 +74,7 @@
     <EntitySetMapping Name="Article">
       <EntityTypeMapping TypeName="SouNewsDBModel.Article">
         <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="pic" ColumnName="pic" />
           <ScalarProperty Name="addtime" ColumnName="addtime" />
           <ScalarProperty Name="state" ColumnName="state" />
           <ScalarProperty Name="module" ColumnName="module" />

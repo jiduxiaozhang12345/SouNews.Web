@@ -11,6 +11,7 @@
     <Property Name="module" Type="varchar" MaxLength="50" />
     <Property Name="state" Type="int" />
     <Property Name="addtime" Type="datetime" />
+    <Property Name="pic" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="LogOperate">
     <Key>

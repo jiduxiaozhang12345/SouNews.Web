@@ -1,21 +1,22 @@
 ﻿@{
     ViewBag.Title = "Father";
 }
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>搜闻天下后台管理系统</title>
     <link href="~/Content/Css/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/Css/bootstrap-responsive.css" rel="stylesheet" />
     <link href="~/Content/Css/jquery.autocomplete.css" rel="stylesheet" />
-
-    <script src="~/Scripts/jquery-1.12.1.min.js"></script>
+    <link href="~/Content/summernote/summernote.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/ckform.js"></script>
     <script src="~/Scripts/common.js"></script>
     <script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
     <script src="~/Scripts/myModal.js"></script>
-    <script src="~/Scripts/pixel-admin.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Content/summernote/summernote.min.js"></script>
     <style>
         * {
             font-size: 12px;
@@ -33,23 +34,8 @@
         }
     </style>
 </head>
-<script>
-    $(function () {
-        $(".btn-success").each(function () {
-            if ($(this).attr("data-url") == "Create") {
-                $(this).css({ position: "absolute", right: 1, top: 1, height: 30, paddingTop: 2 });
-            }
-        })
-        $(".pager a").each(function () {
-            $(this).attr("target", "_self")
-
-        })
-    });
-</script>
 <body>
     @RenderBody()
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
 </body>
-
+</html>
 
